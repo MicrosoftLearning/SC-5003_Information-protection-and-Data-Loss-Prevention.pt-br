@@ -4,40 +4,69 @@ lab:
   exercise: Exercise 1 - Create a custom sensitive information type
 ---
 
-## Locatários do WWL – Termos de uso
+# Tarefa de habilidades
 
-Se você estiver recebendo um locatário como parte de uma entrega de treinamento com instrutor, observe que o locatário é disponibilizado com a finalidade de dar suporte aos laboratórios práticos no treinamento com instrutor.
+Sua tarefa é criar e publicar rótulos de confidencialidade em sua organização que classifiquem e protejam dados confidenciais de acordo com seu nível de confidencialidade e os controles de acesso necessários.
 
-Os locatários não devem ser compartilhados ou usados para fins fora dos laboratórios práticos. O locatário usado neste curso é um locatário de avaliação e não pode ser usado ou acessado após o fim da aula e não está qualificado para extensão.
+**Tarefa**:
 
-Os locatários não podem ser convertidos em uma assinatura paga. Os locatários obtidos como parte deste curso permanecem a propriedade da Microsoft Corporation e reservamos o direito de obter acesso e a qualquer momento.
+- Criar um tipo de informação confidencial personalizada
 
-# Tarefas de habilidades
+## Tarefa – Criar um tipo de informações confidenciais personalizado
 
-Sua tarefa é criar um tipo de informação confidencial (SIT) personalizado que atenda aos critérios necessários:
+Nesta tarefa, você criará um novo tipo de informações confidenciais personalizado que reconhece o padrão de IDs de funcionário perto das palavras-chave "Funcionário" e "ID".
 
-- **Padrão regex personalizado para a ID de funcionário**: inclua um padrão regex que identifique a configuração de ID exclusiva de funcionário da sua organização, que é composta por 9 caracteres: 3 dígitos, um hífen, seguido por 5 letras (por exemplo, 123-abcde).
-- **Lista de palavras-chave associadas a IDs de funcionário**: incorpore uma lista de palavras-chave que são comumente associadas a IDs de funcionários para aprimorar a exatidão da detecção.
+1. No **Microsoft Edge**, navegue até **`https://purview.microsoft.com`** e faça logon no portal do Microsoft Purview como o usuário definido como ** Administrador de conformidade** em uma tarefa anterior.
 
-## Tarefa 1: criar um tipo de informação confidencial
+1. Na barra lateral esquerda, escolha **Soluções** e, em seguida, **Proteção de informações**.
 
-1. Navegue até o portal de conformidade do Microsoft Purview.
-1. Expanda a **Classificação de dados** e selecione **Classificadores**.
-1. Selecione **Tipos de informações confidenciais** e, em seguida, selecione **+ Criar de tipo de informação confidencial**.
-1. Na página **Nomear o tipo de informação confidencial**, dê ao seu tipo de informação confidencial um **Nome** **Descrição** significativos para o seu tipo de informação confidencial e selecione**Próximo**.
+1. Na barra lateral à esquerda, expanda **Classificadores** e escolha **Tipos de informações confidenciais**.
+
+1. Na página **Tipos de informações confidenciais**, escolha **+ Criar tipo de informações confidenciais** para iniciar a configuração do tipo de informações confidenciais.
+
+1. Na página **Nomear seu tipo de informações confidenciais**, insira:
+
+    - **Nome**: `Contoso Employee IDs`
+    - **Descrição**: `Pattern for Contoso employee IDs.`
+
+1. Selecione **Avançar**.
+
 1. Na página **Definir padrões para este tipo de informação confidencial**, selecione**Criar padrão**.
-1. Na página **Novo padrão**, selecione **+ Adicionar elemento primário** > **Expressão regular**.
-1. Na página **Adicionar uma expressão regular**, atribua à expressão regular um nome significativo para **ID** e insira `\d{3}-[a-zA-Z]{5}` no campo **Expressão regular** para atender às exigências da organização. Selecione **Concluído** quando terminar.
-1. De volta à página **Novo padrão**, em **Elementos de suporte**, selecione **+ Adicionar elementos de suporte ou grupo de elementos** > **Lista de palavras-chave**.
-1. Na página **Adicionar uma lista de palavras-chave**, dê à sua lista de palavras-chave uma **ID** significativa. Em **Grupo de palavras-chave nº1**, na seção **Sem distinção entre maiúsculas e minúsculas**, insira:
-   - `Employee ID`
-   - `Staff number`
-   - `Work ID`
-1. Selecione **Concluído** quando terminar.
-1. De volta à página **Novo padrão**, selecione **Criar**.
-1. Selecione **Próximo** na página **Definir padrões para este tipo de informação confidencial**.
-1. Na página **Escolher o nível de confiança recomendado para mostrar nas políticas de conformidade**, deixe a seleção padrão e selecione **Próximo**.
-1. Examine as configurações e selecione **Criar**.
-1. Na página **Seu tipo de informação confidencial foi criado**, selecione **Concluído**.
 
-Você criou com sucesso um tipo de informação confidencial (SIT) personalizado para melhorar a segurança e o gerenciamento dos números das IDs exclusivas dos funcionários da sua empresa.
+1. No painel do submenu **Novo padrão** à direita, escolha **+ Adicionar elemento primário** > **Expressão regular**.
+
+1. No painel do submenu **+ Adicionar uma expressão regular** à direita, insira:
+
+    - **ID**: `Contoso IDs`
+    - **Expressão regular**: `[A-Z]{3}[0-9]{6}`
+    - Clique no botão de opção para *Correspondência de cadeia de caracteres*
+
+1. Clique em **Concluído** na parte inferior do painel de submenu.
+
+1. De volta ao painel do submenu **Novo padrão**, em **Elementos de suporte**, clique no menu suspenso **+ Adicionar elementos de suporte ou grupo de elementos** e escolha **Lista de palavras-chave**.
+
+1. No painel de submenu **Adicionar uma lista de palavras-chave** à direita, insira:
+
+    - **ID**: `Employee ID keywords`
+    - **Não diferencia maiúsculas de minúsculas**:
+
+       ```text
+       Employee
+       ID
+       ```
+
+    - Clique no botão de opção para *Correspondência de palavras*
+
+1. Clique em **Concluído** na parte inferior do painel de submenu.
+
+1. De volta ao painel do submenu **Novo padrão**, em **Proximidade de caracteres**, diminua o valor **Detectar elementos primários E de suporte** para `100` caracteres.
+
+1. Clique no botão **Criar** na parte inferior do painel de submenu.
+
+1. De volta à página **Definir padrões para este tipo de informações confidenciais**, clique em **Avançar**.
+
+1. Na página **Escolher o nível de confiança recomendado para mostrar nas políticas de conformidade**, use o valor padrão e clique em **Avançar**.
+
+1. Na página **Revisar configurações e concluir**, revise as configurações e selecione **Criar**. Quando a criação tiver êxito, selecione **Concluído**.
+
+Você criou um novo tipo de informação confidencial para identificar IDs de funcionários no padrão de três caracteres maiúsculos, seis números e as palavras-chave "Funcionário" ou "IDs" dentro de um intervalo de 100 caracteres.
