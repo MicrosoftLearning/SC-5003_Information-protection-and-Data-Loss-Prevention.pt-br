@@ -19,8 +19,8 @@ Neste laboratório, você configurará e preparará seu ambiente para tarefas de
 **Tarefas:**
 
 - Habilitar a Auditoria no portal do Microsoft Purview
-- Habilitar a Pesquisa por nome no Microsoft Teams
-- Habilite as barreiras de informações no SharePoint Online e no OneDrive
+- Atribuir funções de conformidade
+- Explorar o portal do Microsoft Purview
 
 ## Tarefa – Habilitar a Auditoria no portal do Microsoft Purview
 
