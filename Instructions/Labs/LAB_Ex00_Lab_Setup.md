@@ -40,6 +40,19 @@ Nesta tarefa, você habilitará a Auditoria no portal do Microsoft Purview para 
 
 1. Depois de selecionar esta opção, a barra azul desaparecerá desta página.
 
+>[!alerta] Se você receber um erro ao ativar a auditoria neste exercício, use estas etapas como solução alternativa:
+>1. Abra uma janela elevada do Terminal clicando no botão Windows com o botão direito do mouse e selecione Terminal (Admin).
+>1. Instale o módulo ExchangeOnlineManagement executando `Install-Module -Name ExchangeOnlineManagement`
+>1. Conecte-se ao ExchangeOnlineManagement executando `Connect-ExchangeOnline`
+>1. Quando solicitado, faça login inserindo o nome de usuário e a senha do administrador do seu provedor de hospedagem de laboratório.
+>1. Para verificar se a Auditoria está habilitada, execute `Get-AdminAuditLogConfig | FL UnifiedAuditLogIngestionEnabled`
+>1. Se for falso, o log de auditoria será desativado.
+>1. Para habilitá-la, execute `Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true`
+>   1. Se você receber um erro informando que não é possível executar o script em sua organização, execute `Enable-OrganizationCustomization`
+>   1. Tente executar novamente `Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true`
+>1. Para confirmar se a Auditoria está habilitada, execute `Get-AdminAuditLogConfig | FL UnifiedAuditLogIngestionEnabled`
+>1. Depois de concluído, execute `Disconnect-ExchangeOnline` para encerrar a sessão
+
 Você habilitou a auditoria no Microsoft 365.
 
 ## Tarefa – Atribuir funções de conformidade
