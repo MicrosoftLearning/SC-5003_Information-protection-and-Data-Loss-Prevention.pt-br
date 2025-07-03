@@ -17,71 +17,19 @@ Sua tarefa é criar e publicar rótulos de confidencialidade em sua organizaçã
 
 ## Tarefa 1 - Habilitar o suporte para rótulos de confidencialidade no SharePoint e no OneDrive
 
-Nesta tarefa, você instalará os módulos necessários e habilitará o suporte para rótulos de confidencialidade em seu locatário. Isso é necessário para a tarefa opcional de aplicar rótulos de confidencialidade posteriormente neste exercício.
+Nesta tarefa, você habilitará a coautoria para rótulos de confidencialidade, o que também habilita rótulos de confidencialidade para arquivos no SharePoint e no OneDrive.
 
-1. Na área de trabalho, abra uma janela com privilégios elevados do PowerShell clicando com o botão direito do mouse no botão Windows na barra de tarefas e selecione **Terminal (Admin)**.
+1. Abra o **Microsoft Edge** e nague até `https://purview.microsoft.com`.
 
-1. Confirme a janela **Controle de Conta de Usuário** com **Sim**.
+1. Na navegação à esquerda, selecione **Configurações** > **Proteção de informações**.
 
-1. Execute o cmdlet **Install-Module** para instalar a versão mais recente do módulo do MS Online PowerShell:
+1. Nas configurações** de **Proteção de Informações, verifique se você está na **guia Coautoria para arquivos com rótulos** de confidencialidade.
 
-    ```powershell
-    Install-Module -Name MSOnline
-    ```
+1. Selecione a caixa de seleção **Ativar coautoria para arquivos com rótulos de confidencialidade**.
 
-1. Confirme a caixa de diálogo de segurança do Nuget e a caixa de diálogo Segurança do repositório não confiável com **S** para Sim e pressione Enter. Esse processo pode levar algum tempo para ser concluído.
+1. Selecione **Aplicar** na parte inferior da tela.
 
-1. Execute o cmdlet **Install-Module** para instalar a versão mais recente do módulo do PowerShell do SharePoint Online:
-
-    ```powershell
-    Install-Module -Name Microsoft.Online.SharePoint.PowerShell
-    ```
-
-1. Confirme a caixa de diálogo Segurança do repositório não confiável com **S** para Sim e pressione Enter.
-
-1. Execute o **Connect-MsolService** para se conectar ao serviço MS Online:
-
-    ```powershell
-    Connect-MsolService
-    ```
-
-1. No formulário **Entrar na sua conta**, entre como o usuário que você escolheu como **Administrador de conformidade** em um exercício anterior.
-
-1. Depois de fazer login, navegue de volta para a janela do terminal.
-
-1. Execute o cmdlet **Get-Msoldomain** e salve o domínio como uma variável:
-
-    ```powershell
-    $domain = get-msoldomain
-    ```
-
-1. Use a variável _$domain_ criada na etapa anterior para criar uma nova variável para _$adminurl_:
-
-    ```powershell
-    $adminurl = "https://" + $domain.Name.split('.')[0] + "-admin.sharepoint.com"
-    ```
-
-1. Execute o cmdlet **Connect-SPOService** usando a variável _$adminurl_ criada na etapa anterior:
-
-    ```powershell
-    Connect-SPOService -url $adminurl
-    ```
-
-1. No formulário **Entrar na sua conta**, entre como **Administrador global**.
-
-1. Depois de fazer login, navegue de volta para a janela do terminal.
-
-1. Execute o cmdlet **Set-SPOTenant** para habilitar o suporte para rótulos de confidencialidade:
-
-    ```powershell
-    Set-SPOTenant -EnableAIPIntegration $true
-    ```
-
-1. Confirme as alterações com **S** para Sim e pressione Enter.
-
-1. Feche a janela do PowerShell.
-
-Você habilitou o suporte para rótulos de confidencialidade para sites do Teams e do SharePoint.
+Você habilitou com sucesso o suporte a rótulos de confidencialidade para arquivos no SharePoint e no OneDrive.
 
 ## Tarefa 2 – Criar rótulos de confidencialidade
 
